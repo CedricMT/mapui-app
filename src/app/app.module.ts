@@ -12,12 +12,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PatientPanelComponent } from './patient-panel/patient-panel.component';
+import { DoctorPanelComponent } from './doctor-panel/doctor-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideNavComponent,
-    NavbarComponent
+    NavbarComponent,
+    PatientPanelComponent,
+    DoctorPanelComponent
   ],
   imports: [
     BrowserModule,
