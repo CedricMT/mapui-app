@@ -14,6 +14,10 @@ import { MatListModule } from '@angular/material/list';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PatientPanelComponent } from './patient-panel/patient-panel.component';
 import { DoctorPanelComponent } from './doctor-panel/doctor-panel.component';
+import { ListingTableComponent } from './listing-table/listing-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import { DoctorPanelComponent } from './doctor-panel/doctor-panel.component';
     SideNavComponent,
     NavbarComponent,
     PatientPanelComponent,
-    DoctorPanelComponent
+    DoctorPanelComponent,
+    ListingTableComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,10 @@ import { DoctorPanelComponent } from './doctor-panel/doctor-panel.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
