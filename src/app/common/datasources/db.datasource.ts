@@ -20,7 +20,7 @@ export class DbDataSource extends DataSource<Patient> {
     super();
     switch (collectionName) {
       case 'patient':
-        this.columns = ['firstName', 'lastName', 'sex', 'age', 'drugs', 'treatments'];
+        this.columns = ['firstName', 'lastName', 'sex', 'age'];
         this.dataSubject = new BehaviorSubject<Patient[]>([]);
         break;
 
