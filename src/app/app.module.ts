@@ -19,6 +19,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { HttpClientModule } from '@angular/common/http';
+import { MatRippleModule } from '@angular/material/core';
+import { DetailPanelComponent } from './detail-panel/detail-panel.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     PatientPanelComponent,
     DoctorPanelComponent,
-    ListingTableComponent
+    ListingTableComponent,
+    DetailPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    HttpClientModule
+    HttpClientModule,
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
