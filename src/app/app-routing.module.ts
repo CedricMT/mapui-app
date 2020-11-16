@@ -5,6 +5,7 @@ import { DoctorPanelComponent } from './doctor-panel/doctor-panel.component';
 import { DetailPanelComponent } from './detail-panel/detail-panel.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'patient', pathMatch: 'full' },
   {
     path: 'patient',
     component: PatientPanelComponent
