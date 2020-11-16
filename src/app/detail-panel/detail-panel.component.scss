@@ -31,3 +31,19 @@
         }
     }
 }
+
+.divider {
+    margin: 0 1rem;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+
+    .title {
+        margin-left: 1rem;
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+}

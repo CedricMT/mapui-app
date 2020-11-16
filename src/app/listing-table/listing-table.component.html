@@ -1,16 +1,13 @@
-<div class="mat-elevation-z8">
-
-  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-    <mat-spinner></mat-spinner>
-  </div>
-
-  <mat-table class="full-width-table" matSort [dataSource]="dataSource" aria-label="Elements">
-    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>{{capitalizeFirstLetter(column)}}</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row[column]}}</mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/patient/', row.id]"></mat-row>
-  </mat-table>
+<div class="spinner-container" *ngIf="dataSource.loading$ | async">
+  <mat-spinner></mat-spinner>
 </div>
+
+<mat-table class="full-width-table" matSort [dataSource]="dataSource" aria-label="Elements">
+  <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{capitalizeFirstLetter(column)}}</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row[column]}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/patient/', row.id]"></mat-row>
+</mat-table>

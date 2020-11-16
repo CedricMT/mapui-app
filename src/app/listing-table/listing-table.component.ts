@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ListingTableDataSource } from './listing-table-datasource';
+import { DbDataSource } from 'src/app/common/datasources/db.datasource';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -8,16 +8,16 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./listing-table.component.scss']
 })
 export class ListingTableComponent implements OnInit {
-  @Input() dataSourceType: string;
-  dataSource: ListingTableDataSource;
+  @Input() collectionName: string;
+  dataSource: DbDataSource;
 
   public displayedColumns;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    console.log('loaded with dataSourceType: ', this.dataSourceType);
-    this.dataSource = new ListingTableDataSource(this.dataSourceType, this.dataService);
+    console.log('loaded with dataSourceType: ', this.collectionName);
+    this.dataSource = new DbDataSource(this.dataService, this.collectionName);
     this.displayedColumns = this.dataSource.columns;
   }
 
