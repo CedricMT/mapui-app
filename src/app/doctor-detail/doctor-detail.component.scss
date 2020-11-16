@@ -1,0 +1,49 @@
+.header {
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    height: 4rem;
+    margin: 1rem;
+
+    .header-icon {
+        width: 4rem;
+
+        img {
+            border-radius: 50%;
+            height: 100%;
+        }
+    }
+
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 1rem;
+
+        .header-title {
+            font-size: 1.75rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .header-subtitle {
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(20, 15, 15, 0.54);
+        }
+    }
+}
+
+.divider {
+    margin: 0 1rem;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+
+    .title {
+        margin-left: 1rem;
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+}

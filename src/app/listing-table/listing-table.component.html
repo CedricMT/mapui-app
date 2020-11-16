@@ -9,5 +9,5 @@
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/patient/', row.id]"></mat-row>
+  <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" [routerLink]="[routerLinkBase + '/', row.id]"></mat-row>
 </mat-table>

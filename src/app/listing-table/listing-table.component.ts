@@ -9,6 +9,8 @@ import { DataService } from '../services/data.service';
 })
 export class ListingTableComponent implements OnInit {
   @Input() collectionName: string;
+  @Input() routerLinkBase: string;
+  @Input() dataOptions: string;
   dataSource: DbDataSource;
 
   public displayedColumns;

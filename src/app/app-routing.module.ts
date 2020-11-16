@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PatientPanelComponent } from './patient-panel/patient-panel.component';
 import { DoctorPanelComponent } from './doctor-panel/doctor-panel.component';
 import { PatientDetailComponent } from './patient-detail/patient-detail.component';
+import { DoctorDetailComponent } from './doctor-detail/doctor-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'patient', pathMatch: 'full' },
@@ -17,6 +18,9 @@ const routes: Routes = [
     path: 'doctor',
     component: DoctorPanelComponent
   },
+  {
+    path: 'doctor/:id', component: DoctorDetailComponent, data: { collection: 'doctor' }
+  }
 ];
 
 @NgModule({

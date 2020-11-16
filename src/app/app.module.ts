@@ -24,6 +24,7 @@ import { ListingTableComponent } from './listing-table/listing-table.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PatientPanelComponent } from './patient-panel/patient-panel.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { DoctorDetailComponent } from './doctor-detail/doctor-detail.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     PatientPanelComponent,
     DoctorPanelComponent,
     ListingTableComponent,
-    PatientDetailComponent
+    PatientDetailComponent,
+    DoctorDetailComponent
   ],
   imports: [
     AppRoutingModule,

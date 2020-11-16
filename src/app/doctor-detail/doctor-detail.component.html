@@ -1,0 +1,29 @@
+<mat-toolbar color="secondary">
+    <span>Doctor details</span>
+</mat-toolbar>
+
+<div *ngIf="doctor">
+    <div class="header">
+        <div class="header-icon">
+            <img src="assets/user_icon.png">
+        </div>
+        <div class="header-content">
+            <span class="header-title">{{doctor.firstName}} {{doctor.lastName}}</span>
+            <span class="header-subtitle">{{doctor.speciality}}</span>
+        </div>
+    </div>
+</div>
+
+<mat-divider class="divider"></mat-divider>
+
+<div class="title-container">
+    <mat-icon aria-hidden="false" aria-label="drug_icon">people</mat-icon>
+    <span class="title">Patients</span>
+</div>
+<app-listing-table collectionName="patient"></app-listing-table>
+
+<div class="title-container">
+    <mat-icon aria-hidden="false" aria-label="treatment_icon">history_edu</mat-icon>
+    <span class="title">Treatments</span>
+</div>
+<app-listing-table collectionName="treatment"></app-listing-table>
