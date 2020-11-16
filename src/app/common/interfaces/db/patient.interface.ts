@@ -4,6 +4,6 @@ export interface Patient {
     lastName: string;
     sex: string;
     age: string;
-    drugs: Array<any>;
-    treatments: Array<any>;
+    drugs: Array<string>;
+    treatments: Array<string>;
   }

@@ -10,7 +10,7 @@ const routes: Routes = [
     component: PatientPanelComponent
   },
   {
-    path:'patient/:id', component: DetailPanelComponent
+    path: 'patient/:id', component: DetailPanelComponent, data: { collection: 'patient' }
   },
   {
     path: 'doctor',

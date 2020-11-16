@@ -1,1 +1,15 @@
-<span>Patient ID to load: {{id}}</span>
+<mat-toolbar color="secondary">
+    <span>Patient details</span>
+</mat-toolbar>
+
+<div *ngIf="patient">
+    <div class="header">
+        <div class="header-icon">
+            <img src="assets/user_icon.png">
+        </div>
+        <div class="header-content">
+            <span class="header-title">{{patient.firstName}} {{patient.lastName}}</span>
+            <span class="header-subtitle">{{patient.age}} ans, {{patient.sex}}</span>
+        </div>
+    </div>
+</div>
