@@ -1,30 +1,23 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { ListingTableDataSource, ListingTableItem } from './listing-table-datasource';
+import { Component, OnInit } from '@angular/core';
+import { ListingTableDataSource } from './listing-table-datasource';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-listing-table',
   templateUrl: './listing-table.component.html',
   styleUrls: ['./listing-table.component.scss']
 })
-export class ListingTableComponent implements AfterViewInit, OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<ListingTableItem>;
+export class ListingTableComponent implements OnInit {
   dataSource: ListingTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  public displayedColumns;
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataSource = new ListingTableDataSource();
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    this.dataSource = new ListingTableDataSource('Patient', this.dataService);
+    this.displayedColumns = this.dataSource.columns;
+    this.dataSource.loadData();
   }
 }
