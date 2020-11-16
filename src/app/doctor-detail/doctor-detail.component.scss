@@ -30,6 +30,12 @@
             color: rgba(20, 15, 15, 0.54);
         }
     }
+
+    .button-container {
+        margin-left: 2rem;
+        display: flex;
+        align-items: center;
+    }
 }
 
 .divider {
