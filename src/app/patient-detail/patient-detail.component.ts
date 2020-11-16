@@ -6,11 +6,11 @@ import { DataService } from 'src/app/services/data.service';
 import { Patient } from '../common/interfaces/db/patient.interface';
 
 @Component({
-  selector: 'app-detail-panel',
-  templateUrl: './detail-panel.component.html',
-  styleUrls: ['./detail-panel.component.scss']
+  selector: 'app-patient-detail',
+  templateUrl: './patient-detail.component.html',
+  styleUrls: ['./patient-detail.component.scss']
 })
-export class DetailPanelComponent implements OnInit {
+export class PatientDetailComponent implements OnInit {
   public dataSource: DbDataSource;
   public displayedColumns;
   public patient: Patient;

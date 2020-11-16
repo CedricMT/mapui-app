@@ -18,7 +18,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppComponent } from './app.component';
-import { DetailPanelComponent } from './detail-panel/detail-panel.component';
+import { PatientDetailComponent } from './patient-detail/patient-detail.component';
 import { DoctorPanelComponent } from './doctor-panel/doctor-panel.component';
 import { ListingTableComponent } from './listing-table/listing-table.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -33,7 +33,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     PatientPanelComponent,
     DoctorPanelComponent,
     ListingTableComponent,
-    DetailPanelComponent
+    PatientDetailComponent
   ],
   imports: [
     AppRoutingModule,
