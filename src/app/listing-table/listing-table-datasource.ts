@@ -1,16 +1,16 @@
 import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { finalize, map } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
-import { Observable, of as observableOf, merge, BehaviorSubject, of } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { DataService } from '../services/data.service';
 
+import { Doctor } from 'src/app/interfaces/doctor.interface';
 import { Patient } from 'src/app/interfaces/patient.interface';
 
 export class ListingTableDataSource extends DataSource<Patient> {
-  private patientSubject = new BehaviorSubject<Patient[]>([]);
+  private dataSubject;
   private loadingSubject = new BehaviorSubject<boolean>(false);
+  private dbCollection: string;
 
   public columns: Array<String>;
   public loading$ = this.loadingSubject.asObservable();
@@ -19,12 +19,23 @@ export class ListingTableDataSource extends DataSource<Patient> {
     super();
     switch (type) {
       case 'Patient':
+        this.dbCollection = 'patient';
         this.columns = ['id', 'firstName', 'lastName', 'sex', 'age', 'drugs', 'treatments'];
+        this.dataSubject = new BehaviorSubject<Patient[]>([]);
+        break;
+
+        case 'Doctor':
+        this.dbCollection = 'doctor';
+        this.columns = ['id', 'firstName', 'lastName', 'speciality'];
+        this.dataSubject = new BehaviorSubject<Doctor[]>([]);
         break;
 
       default:
+        console.error('Input \'dataSourceType\' not valid!')
         break;
     }
+
+    this.loadData();
   }
 
   /**
@@ -33,7 +44,7 @@ export class ListingTableDataSource extends DataSource<Patient> {
    * @returns A stream of the items to be rendered.
    */
   connect(): Observable<Patient[]> {
-    return this.patientSubject.asObservable();
+    return this.dataSubject.asObservable();
   }
 
   /**
@@ -41,21 +52,20 @@ export class ListingTableDataSource extends DataSource<Patient> {
    * any open connections or free any held resources that were set up during connect.
    */
   disconnect() {
-    this.patientSubject.complete();
+    this.dataSubject.complete();
     this.loadingSubject.complete();
   }
 
   loadData() {
     this.loadingSubject.next(true);
 
-    this.dataService.getAll()
+    this.dataService.getAll(this.dbCollection)
       .pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe(data => {
-        this.columns = data.length > 0 ? Object.keys(data[0]) : [];
-        this.patientSubject.next(data);
+        this.dataSubject.next(data);
       });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ListingTableDataSource } from './listing-table-datasource';
 import { DataService } from '../services/data.service';
 
@@ -8,16 +8,20 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./listing-table.component.scss']
 })
 export class ListingTableComponent implements OnInit {
+  @Input() dataSourceType: string;
   dataSource: ListingTableDataSource;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   public displayedColumns;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataSource = new ListingTableDataSource('Patient', this.dataService);
+    console.log('loaded with dataSourceType: ', this.dataSourceType);
+    this.dataSource = new ListingTableDataSource(this.dataSourceType, this.dataService);
     this.displayedColumns = this.dataSource.columns;
-    this.dataSource.loadData();
+  }
+
+  public capitalizeFirstLetter(str: string) {
+    return str.replace(/^./, str[0].toUpperCase());
   }
 }

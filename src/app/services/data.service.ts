@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const baseUrl = 'http://localhost:3000/api/patient';
+const baseUrl = 'http://localhost:3000/api/';
 
 @Injectable({
   providedIn: 'root'
@@ -16,30 +16,54 @@ export class DataService {
     'Access-Control-Allow-Origin': '*'
   });
 
+  validCollections: Array<string> = ['patient', 'doctor', 'drug', 'treatment'];
+
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any> {
-    return this.http.get(baseUrl, { headers: this.headers });
+  getAll(collection: string,): Observable<any> {
+    if (!this.isCollectionValid(collection)) {
+      throw new Error('Cannot request db due to invalid collection');
+    }
+    return this.http.get(baseUrl + collection, { headers: this.headers });
   }
 
-  get(id): Observable<any> {
-    return this.http.get(`${baseUrl}/${id}`);
+  get(collection: string, id): Observable<any> {
+    if (!this.isCollectionValid(collection)) {
+      throw new Error('Cannot request db due to invalid collection');
+    }
+    return this.http.get(`${baseUrl}${collection}/${id}`);
   }
 
-  create(data): Observable<any> {
-    return this.http.post(baseUrl, data);
+  create(collection: string, data): Observable<any> {
+    if (!this.isCollectionValid(collection)) {
+      throw new Error('Cannot request db due to invalid collection');
+    }
+    return this.http.post(baseUrl + collection, data);
   }
 
-  update(id, data): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+  update(collection: string, id, data): Observable<any> {
+    if (!this.isCollectionValid(collection)) {
+      throw new Error('Cannot request db due to invalid collection');
+    }
+    return this.http.put(`${baseUrl}${collection}/${id}`, data);
   }
 
-  delete(id): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
+  delete(collection: string, id): Observable<any> {
+    if (!this.isCollectionValid(collection)) {
+      throw new Error('Cannot request db due to invalid collection');
+    }
+    return this.http.delete(`${baseUrl}${collection}/${id}`);
   }
 
-  deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
+  deleteAll(collection: string): Observable<any> {
+    if (!this.isCollectionValid(collection)) {
+      throw new Error('Cannot request db due to invalid collection');
+    }
+    return this.http.delete(baseUrl + collection);
+  }
+
+  isCollectionValid(collection: string): boolean {
+    return this.validCollections.find(validCollection => validCollection = collection) ? true : false;
   }
 
   // findByTitle(title): Observable<any> {
