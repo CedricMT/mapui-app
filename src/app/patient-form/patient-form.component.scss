@@ -1,0 +1,16 @@
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+
+    .form-btn {
+        margin-left: 1rem;
+    }
+}
+
+.form-container {
+    display: flex;
+
+    .form-field {
+        margin-right: 1rem;
+    }
+}

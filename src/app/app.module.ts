@@ -7,13 +7,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -25,6 +30,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PatientPanelComponent } from './patient-panel/patient-panel.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { DoctorDetailComponent } from './doctor-detail/doctor-detail.component';
+import { PatientFormComponent } from './patient-form/patient-form.component';
 
 @NgModule({
   declarations: [
@@ -35,24 +41,31 @@ import { DoctorDetailComponent } from './doctor-detail/doctor-detail.component';
     DoctorPanelComponent,
     ListingTableComponent,
     PatientDetailComponent,
-    DoctorDetailComponent
+    DoctorDetailComponent,
+    PatientFormComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
     MatDividerModule,
+    MatFormFieldModule,
     MatSidenavModule,
     MatIconModule,
+    MatInputModule,
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatSelectModule,
     HttpClientModule,
     MatRippleModule
   ],

@@ -3,7 +3,7 @@
 </mat-toolbar>
 
 <app-listing-table collectionName="patient" routerLinkBase="/patient"></app-listing-table>
-<button class="add-row-btn" mat-flat-button color="primary">
+<button class="add-row-btn" (click)="openDialog()" mat-flat-button color="primary">
     <mat-icon aria-hidden="false" aria-label="add_btn_icon">add</mat-icon>
     ADD
 </button>

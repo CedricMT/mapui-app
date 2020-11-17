@@ -1,0 +1,37 @@
+<h2>Create new Patient</h2>
+
+<div class="form-container">
+    <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+        <div class="form-field-container">
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>First name</mat-label>
+                <input matInput type="text" formControlName="firstName">
+            </mat-form-field>
+
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput type="text" formControlName="lastName">
+            </mat-form-field>
+
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>Age</mat-label>
+                <input matInput type="text" formControlName="age">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Sex</mat-label>
+                <mat-select name="sex" formControlName="sex">
+                    <mat-option *ngFor="let sex of sexes" [value]="sex">
+                        {{sex}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="btn-container">
+            <button class="form-btn" mat-stroked-button color="primary">CANCEL</button>
+            <button type="submit" class="form-btn" mat-flat-button color="primary"
+                [disabled]="!patientForm.valid">CREATE</button>
+        </div>
+    </form>
+</div>
