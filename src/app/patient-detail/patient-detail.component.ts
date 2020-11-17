@@ -13,6 +13,9 @@ import { Patient } from '../common/interfaces/db/patient.interface';
 export class PatientDetailComponent implements OnInit {
   public dataSource: DbDataSource;
   public displayedColumns;
+  public patientLoaded: boolean;
+  public treatmentFilter;
+  public drugFilter;
   public patient: Patient;
 
   private id: string;
@@ -29,15 +32,16 @@ export class PatientDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.dataService.get(this.collectionName, this.id)
-      .subscribe(patient => this.patient = patient);
-    // this.dataSource = new DbDataSource(this.dataService, this.collectionName, this.id);
-    // this.displayedColumns = this.dataSource.columns;
+    this.dataService.getById(this.collectionName, this.id).toPromise()
+      .then(patient => {
+        this.patient = patient;
+        this.drugFilter = { ids: this.patient.drugs };
+        this.treatmentFilter = { ids: this.patient.treatments };
+        this.patientLoaded = true;
+      });
   }
 
   public capitalizeFirstLetter(str: string) {
     return str.replace(/^./, str[0].toUpperCase());
   }
-
 }

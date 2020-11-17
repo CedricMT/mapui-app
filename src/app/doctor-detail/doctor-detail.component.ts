@@ -29,11 +29,8 @@ export class DoctorDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.dataService.get(this.collectionName, this.id)
+    this.dataService.getById(this.collectionName, this.id)
       .subscribe(doctor => this.doctor = doctor);
-    // this.dataSource = new DbDataSource(this.dataService, this.collectionName, this.id);
-    // this.displayedColumns = this.dataSource.columns;
   }
 
   public capitalizeFirstLetter(str: string) {

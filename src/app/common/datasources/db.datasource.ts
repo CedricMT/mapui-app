@@ -16,7 +16,7 @@ export class DbDataSource extends DataSource<Patient> {
   public columns: Array<String>;
   public loading$ = this.loadingSubject.asObservable();
 
-  constructor(private dataService: DataService, private collectionName: string, private id?: string) {
+  constructor(private dataService: DataService, private collectionName: string, private filter?: any) {
     super();
     switch (collectionName) {
       case 'patient':
@@ -44,11 +44,7 @@ export class DbDataSource extends DataSource<Patient> {
         break;
     }
 
-    if (id) {
-      this.loadData(id);
-    } else {
-      this.loadData();
-    }
+    this.loadData(filter);
   }
 
   /**
@@ -69,23 +65,26 @@ export class DbDataSource extends DataSource<Patient> {
     this.loadingSubject.complete();
   }
 
-  loadData(id?: string) {
+  loadData(filter?: any) {
     let request;
     this.loadingSubject.next(true);
 
-    if (id) {
-      request = this.dataService.get(this.collectionName, id);
+    if (filter) {
+      if (filter.ids) {
+        request = this.dataService.getByIds(this.collectionName, filter);
+      } else {
+        request = this.dataService.get(this.collectionName, filter);
+      }
     } else {
       request = this.dataService.getAll(this.collectionName)
     }
-    
+
     request
-    .pipe(
-      catchError(() => of([])),
-      finalize(() => this.loadingSubject.next(false))
+      .pipe(
+        catchError(() => of([])),
+        finalize(() => this.loadingSubject.next(false))
       )
       .subscribe(data => {
-        console.log('retrieved data: ', data);
         this.dataSubject.next(data);
       });
   }

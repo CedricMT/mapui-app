@@ -8,9 +8,9 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./listing-table.component.scss']
 })
 export class ListingTableComponent implements OnInit {
-  @Input() collectionName: string;
   @Input() routerLinkBase: string;
-  @Input() dataOptions: string;
+  @Input() collectionName: string;
+  @Input() filter: any;
   dataSource: DbDataSource;
 
   public displayedColumns;
@@ -18,8 +18,7 @@ export class ListingTableComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    console.log('loaded with dataSourceType: ', this.collectionName);
-    this.dataSource = new DbDataSource(this.dataService, this.collectionName);
+    this.dataSource = new DbDataSource(this.dataService, this.collectionName, this.filter);
     this.displayedColumns = this.dataSource.columns;
   }
 

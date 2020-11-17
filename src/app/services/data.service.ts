@@ -27,11 +27,25 @@ export class DataService {
     return this.http.get(baseUrl + collection, { headers: this.headers });
   }
 
-  get(collection: string, id): Observable<any> {
+  getById(collection: string, id): Observable<any> {
     if (!this.isCollectionValid(collection)) {
       throw new Error('Cannot request db due to invalid collection');
     }
-    return this.http.get(`${baseUrl}${collection}/${id}`);
+    return this.http.get(`${baseUrl}${collection}/id/${id}`);
+  }
+
+  getByIds(collection: string, filter): Observable<any> {
+    if (!this.isCollectionValid(collection)) {
+      throw new Error('Cannot request db due to invalid collection');
+    }
+    return this.http.get(`${baseUrl}${collection}/ids`, { params: filter });
+  }
+
+  get(collection: string, filter): Observable<any> {
+    if (!this.isCollectionValid(collection)) {
+      throw new Error('Cannot request db due to invalid collection');
+    }
+    return this.http.get(`${baseUrl}${collection}`, { params: filter });
   }
 
   create(collection: string, data): Observable<any> {
@@ -65,8 +79,4 @@ export class DataService {
   isCollectionValid(collection: string): boolean {
     return this.validCollections.find(validCollection => validCollection = collection) ? true : false;
   }
-
-  // findByTitle(title): Observable<any> {
-  //   return this.http.get(`${baseUrl}?title=${title}`);
-  // }
 }
