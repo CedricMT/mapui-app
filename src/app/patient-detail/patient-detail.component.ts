@@ -13,7 +13,7 @@ import { Patient } from '../common/interfaces/db/patient.interface';
 export class PatientDetailComponent implements OnInit {
   public dataSource: DbDataSource;
   public displayedColumns;
-  public patientLoaded: boolean;
+  public dbDataLoaded: boolean = false;
   public treatmentFilter;
   public drugFilter;
   public patient: Patient;
@@ -37,7 +37,7 @@ export class PatientDetailComponent implements OnInit {
         this.patient = patient;
         this.drugFilter = { ids: this.patient.drugs };
         this.treatmentFilter = { ids: this.patient.treatments };
-        this.patientLoaded = true;
+        this.dbDataLoaded = true;
       });
   }
 

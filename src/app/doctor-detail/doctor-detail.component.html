@@ -26,7 +26,7 @@
     <mat-icon aria-hidden="false" aria-label="drug_icon">people</mat-icon>
     <span class="title">Patients</span>
 </div>
-<app-listing-table collectionName="patient"></app-listing-table>
+<app-listing-table *ngIf="dbDataLoaded" collectionName="patient" [filter]="patientFilter"></app-listing-table>
 <button class="add-row-btn" mat-flat-button color="primary" disabled>
     <mat-icon aria-hidden="false" aria-label="add_btn_icon">add</mat-icon>
     ADD
@@ -38,7 +38,7 @@
     <mat-icon aria-hidden="false" aria-label="treatment_icon">history_edu</mat-icon>
     <span class="title">Treatments</span>
 </div>
-<app-listing-table collectionName="treatment"></app-listing-table>
+<app-listing-table *ngIf="dbDataLoaded" collectionName="treatment" [filter]="treatmentFilter"></app-listing-table>
 <button class="add-row-btn" mat-flat-button color="primary" disabled>
     <mat-icon aria-hidden="false" aria-label="add_btn_icon">add</mat-icon>
     ADD

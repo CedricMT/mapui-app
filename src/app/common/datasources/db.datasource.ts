@@ -35,7 +35,7 @@ export class DbDataSource extends DataSource<Patient> {
         break;
 
       case 'treatment':
-        this.columns = ['start', 'end', 'doctor'];
+        this.columns = ['start', 'end', 'text', 'doctor'];
         this.dataSubject = new BehaviorSubject<Treatment[]>([]);
         break;
 
