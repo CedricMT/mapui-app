@@ -32,5 +32,10 @@ export class ListingTableComponent implements OnInit {
 
   public delete(row) {
     console.log('Delete ', this.collectionName, ' with id: ', row.id);
+    this.dataService.delete(this.collectionName, row.id)
+      .subscribe((result) => {
+        console.log(result);
+        this.dataSource.loadData();
+    });
   }
 }
