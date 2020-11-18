@@ -66,8 +66,11 @@
 
         <div class="btn-container">
             <button class="form-btn" mat-stroked-button color="primary">CANCEL</button>
-            <button type="submit" class="form-btn" mat-flat-button color="primary"
-                [disabled]="!form.valid">CREATE</button>
+            <button type="submit" [ngSwitch]="data.mode" class="form-btn" mat-flat-button color="primary"
+                [disabled]="!form.valid">
+                <span *ngSwitchCase="'create'">CREATE</span>
+                <span *ngSwitchCase="'edit'">UPDATE</span>
+            </button>
         </div>
     </form>
 </div>
