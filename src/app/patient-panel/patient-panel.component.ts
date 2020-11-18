@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { PatientFormComponent } from 'src/app/patient-form/patient-form.component';
+import { PatientFormComponent } from 'src/app/forms/patient-form/patient-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DataService } from 'src/app/services/data.service';
 import { Patient } from '../common/interfaces/db/patient.interface';

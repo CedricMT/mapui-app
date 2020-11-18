@@ -30,7 +30,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PatientPanelComponent } from './patient-panel/patient-panel.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { DoctorDetailComponent } from './doctor-detail/doctor-detail.component';
-import { PatientFormComponent } from './patient-form/patient-form.component';
+import { PatientFormComponent } from './forms/patient-form/patient-form.component';
 
 @NgModule({
   declarations: [
