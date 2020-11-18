@@ -78,7 +78,11 @@ export class PatientDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(DbFormComponent, dialogConfig);
 
     dialogRef.afterClosed()
-      .subscribe(result => this.createTreatment(result));
+      .subscribe(result => {
+        if (result) {
+          this.createTreatment(result);
+        }
+      });
   }
 
   private createTreatment(treatment: Treatment) {

@@ -59,6 +59,10 @@ export class DbFormComponent {
     }
   }
 
+  public closeDialog() {
+    this.dialogRef.close();
+  }
+
   public onSubmit() {
     this.dialogRef.close(this.form.value);
   }

@@ -24,9 +24,12 @@ export class PatientPanelComponent {
 
     const dialogRef = this.dialog.open(DbFormComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.createPatient(Object.assign(result, { treatments: [], drugs: [] }));
-    });
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.createPatient(Object.assign(result, { treatments: [], drugs: [] }));
+        }
+      });
   }
 
   private createPatient(patient: Patient) {
