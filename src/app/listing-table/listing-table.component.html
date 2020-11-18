@@ -3,11 +3,24 @@
 </div>
 
 <mat-table class="full-width-table" matSort [dataSource]="dataSource" aria-label="Elements">
-  <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+  <ng-container *ngFor="let column of displayedColumns" [ngSwitch]="column" [matColumnDef]="column">
     <mat-header-cell *matHeaderCellDef mat-sort-header>{{capitalizeFirstLetter(column)}}</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{row[column]}}</mat-cell>
+    <div *ngSwitchDefault>
+      <mat-cell *matCellDef="let row">{{row[column]}}</mat-cell>
+    </div>
+    <div *ngSwitchCase="'actions'">
+      <mat-cell *matCellDef="let row">
+        <button class="row-btn" mat-flat-button color="primary" (click)="$event.stopPropagation(); delete(row)">
+          <mat-icon class="row-btn-icon" aria-hidden="false" aria-label="delete_btn_icon">delete</mat-icon>
+        </button>
+        <button class="row-btn" mat-flat-button color="primary" (click)="$event.stopPropagation(); edit(row)">
+          <mat-icon class="row-btn-icon" aria-hidden="false" aria-label="edit_btn_icon">edit</mat-icon>
+        </button>
+      </mat-cell>
+    </div>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" [routerLink]="[routerLinkBase + '/', row.id]"></mat-row>
+  <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" [routerLink]="[routerLinkBase + '/', row.id]">
+  </mat-row>
 </mat-table>

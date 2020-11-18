@@ -25,4 +25,12 @@ export class ListingTableComponent implements OnInit {
   public capitalizeFirstLetter(str: string) {
     return str.replace(/^./, str[0].toUpperCase());
   }
+
+  public edit(row) {
+    console.log('Edit row in ', this.collectionName, ' with: ', row);
+  }
+
+  public delete(row) {
+    console.log('Delete ', this.collectionName, ' with id: ', row.id);
+  }
 }

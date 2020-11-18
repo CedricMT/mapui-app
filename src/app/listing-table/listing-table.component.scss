@@ -5,3 +5,15 @@
 .mat-row {
   cursor: pointer;
 }
+
+.row-btn {
+  min-width: 0;
+  line-height: 1.5rem;
+  padding: 0;
+  margin-right: 0.30rem;
+
+  .row-btn-icon {
+    font-size: 1rem;
+    height: 16px;
+  }
+}
