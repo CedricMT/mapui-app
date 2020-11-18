@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DbDataSource } from 'src/app/common/datasources/db.datasource';
 import { DataService } from '../services/data.service';
+import { PatientFormComponent } from 'src/app/forms/patient-form/patient-form.component';
 
 @Component({
   selector: 'app-listing-table',
@@ -15,7 +17,7 @@ export class ListingTableComponent implements OnInit {
 
   public displayedColumns;
 
-  constructor(private dataService: DataService) { }
+  constructor(public dialog: MatDialog, private dataService: DataService) { }
 
   ngOnInit() {
     this.dataSource = new DbDataSource(this.dataService, this.collectionName, this.filter);
@@ -27,7 +29,25 @@ export class ListingTableComponent implements OnInit {
   }
 
   public edit(row) {
-    console.log('Edit row in ', this.collectionName, ' with: ', row);
+    this.openDialog(row);
+  }
+
+  private openDialog(row) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = Object.assign(row, {
+      collectionName: this.collectionName,
+      mode: 'edit'
+    });
+
+    const dialogRef = this.dialog.open(PatientFormComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.dataService.update(this.collectionName, row.id, result)
+        .subscribe((result) => {
+          console.log(result);
+          this.dataSource.loadData();
+        });
+    });
   }
 
   public delete(row) {
@@ -36,6 +56,6 @@ export class ListingTableComponent implements OnInit {
       .subscribe((result) => {
         console.log(result);
         this.dataSource.loadData();
-    });
+      });
   }
 }
