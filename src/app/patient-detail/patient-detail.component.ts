@@ -75,6 +75,8 @@ export class PatientDetailComponent implements OnInit {
       mode: 'create'
     });
 
+    console.log(dialogConfig.data);
+
     const dialogRef = this.dialog.open(DbFormComponent, dialogConfig);
 
     dialogRef.afterClosed()

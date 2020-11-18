@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DbDataSource } from 'src/app/common/datasources/db.datasource';
 import { DataService } from '../services/data.service';
 import { DbFormComponent } from 'src/app/forms/db-form/db-form.component';
+import { Doctor } from '../common/interfaces/db/doctor.interface';
 
 @Component({
   selector: 'app-listing-table',
@@ -15,6 +16,7 @@ export class ListingTableComponent implements OnInit {
   @Input() filter: any;
   dataSource: DbDataSource;
 
+  private doctors: Array<Doctor>;
   public displayedColumns;
 
   constructor(public dialog: MatDialog, private dataService: DataService) { }
@@ -22,6 +24,14 @@ export class ListingTableComponent implements OnInit {
   ngOnInit() {
     this.dataSource = new DbDataSource(this.dataService, this.collectionName, this.filter);
     this.displayedColumns = this.dataSource.columns;
+    if (this.collectionName == 'treatment') {
+      this.loadDoctors();
+    }
+  }
+
+  private loadDoctors() {
+    this.dataService.getAll('doctor')
+      .subscribe(doctors => this.doctors = doctors);
   }
 
   public capitalizeFirstLetter(str: string) {
@@ -36,6 +46,7 @@ export class ListingTableComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = Object.assign(row, {
       collectionName: this.collectionName,
+      doctors: this.doctors,
       mode: 'edit'
     });
 
