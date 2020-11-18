@@ -1,5 +1,5 @@
 export interface Treatment {
-    id: number;
+    id: string;
     start: string;
     end: string;
     text: string;

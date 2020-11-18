@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Doctor } from 'src/app/common/interfaces/db/doctor.interface';
 @Component({
   selector: 'app-db-form',
   templateUrl: './db-form.component.html',
@@ -10,6 +11,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DbFormComponent {
   public form: FormGroup;
   public sexes = ['Male', 'Female'];
+  public doctors: Array<Doctor>;
 
   constructor(
     private dialogRef: MatDialogRef<DbFormComponent>,
@@ -35,12 +37,26 @@ export class DbFormComponent {
         this.form.get('sex').setValue(data.sex);
         break;
 
+      case 'treatment':
+        this.doctors = data.doctors;
+
+        this.form = fb.group({
+          start: ['', [Validators.required]],
+          end: ['', [Validators.required]],
+          text: ['', [Validators.required]],
+          doctor: ['', [Validators.required]],
+        });
+
+        this.form.get('start').setValue(data.start);
+        this.form.get('end').setValue(data.end);
+        this.form.get('text').setValue(data.text);
+        this.form.get('doctor').setValue(data.doctor);
+        break;
+
       default:
         throw new Error("Cannot to generate form due to collectionName not valid ");
         break;
     }
-
-    console.log('Received data into form', data);
   }
 
   public onSubmit() {

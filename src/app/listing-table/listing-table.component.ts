@@ -43,19 +43,12 @@ export class ListingTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.dataService.update(this.collectionName, row.id, result)
-        .subscribe((result) => {
-          console.log(result);
-          this.dataSource.loadData();
-        });
+        .subscribe(() => this.dataSource.loadData());
     });
   }
 
   public delete(row) {
-    console.log('Delete ', this.collectionName, ' with id: ', row.id);
     this.dataService.delete(this.collectionName, row.id)
-      .subscribe((result) => {
-        console.log(result);
-        this.dataSource.loadData();
-      });
+      .subscribe(() => this.dataSource.loadData());
   }
 }

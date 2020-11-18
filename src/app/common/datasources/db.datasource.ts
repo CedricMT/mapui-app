@@ -12,7 +12,7 @@ import { Treatment } from 'src/app/common/interfaces/db/treatment.interface';
 export class DbDataSource extends DataSource<Patient> {
   private dataSubject;
   private loadingSubject = new BehaviorSubject<boolean>(false);
-
+  
   public columns: Array<String>;
   public loading$ = this.loadingSubject.asObservable();
 
@@ -35,7 +35,7 @@ export class DbDataSource extends DataSource<Patient> {
         break;
 
       case 'treatment':
-        this.columns = ['start', 'end', 'text', 'doctor'];
+        this.columns = ['start', 'end', 'text', 'doctor', 'actions'];
         this.dataSubject = new BehaviorSubject<Treatment[]>([]);
         break;
 
@@ -44,7 +44,7 @@ export class DbDataSource extends DataSource<Patient> {
         break;
     }
 
-    this.loadData(filter);
+    this.loadData();
   }
 
   /**
@@ -65,15 +65,15 @@ export class DbDataSource extends DataSource<Patient> {
     this.loadingSubject.complete();
   }
 
-  loadData(filter?: any) {
+  loadData() {
     let request;
     this.loadingSubject.next(true);
 
-    if (filter) {
-      if (filter.ids) {
-        request = this.dataService.getByIds(this.collectionName, filter);
+    if (this.filter) {
+      if (this.filter.ids) {
+        request = this.dataService.getByIds(this.collectionName, this.filter);
       } else {
-        request = this.dataService.get(this.collectionName, filter);
+        request = this.dataService.get(this.collectionName, this.filter);
       }
     } else {
       request = this.dataService.getAll(this.collectionName)

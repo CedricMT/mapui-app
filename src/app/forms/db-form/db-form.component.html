@@ -1,8 +1,10 @@
-<h2>Create new Patient</h2>
-
 <div class="form-container">
     <form [formGroup]="form" [ngSwitch]="data.collectionName" (ngSubmit)="onSubmit()">
+        <!-- Patient Form -->
         <div *ngSwitchCase="'patient'" class="form-field-container">
+            <h2>Create new Patient</h2>
+            <mat-divider class="divider"></mat-divider>
+
             <mat-form-field class="form-field" appearance="fill">
                 <mat-label>First name</mat-label>
                 <input matInput type="text" formControlName="firstName">
@@ -23,6 +25,40 @@
                 <mat-select name="sex" formControlName="sex">
                     <mat-option *ngFor="let sex of sexes" [value]="sex">
                         {{sex}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <!-- Treatment Form -->
+        <div *ngSwitchCase="'treatment'" class="form-field-container">
+            <h2>Create new Treatment</h2>
+            <mat-divider class="divider"></mat-divider>
+
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>Start date</mat-label>
+                <input matInput [matDatepicker]="pickerStart" formControlName="start">
+                <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                <mat-datepicker #pickerStart></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>End date</mat-label>
+                <input matInput [matDatepicker]="pickerEnd" formControlName="end">
+                <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                <mat-datepicker #pickerEnd></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>Text</mat-label>
+                <input matInput type="text" formControlName="text">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Doctor</mat-label>
+                <mat-select name="doctor" formControlName="doctor">
+                    <mat-option *ngFor="let doctor of doctors" [value]="doctor.id">
+                        {{doctor.firstName}} {{doctor.lastName}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
