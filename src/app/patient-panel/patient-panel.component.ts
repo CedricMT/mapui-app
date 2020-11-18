@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { PatientFormComponent } from 'src/app/forms/patient-form/patient-form.component';
+import { DbFormComponent } from 'src/app/forms/db-form/db-form.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DataService } from 'src/app/services/data.service';
 import { Patient } from '../common/interfaces/db/patient.interface';
@@ -22,7 +22,7 @@ export class PatientPanelComponent {
       mode: 'create'
     };
 
-    const dialogRef = this.dialog.open(PatientFormComponent, dialogConfig);
+    const dialogRef = this.dialog.open(DbFormComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       this.createPatient(Object.assign(result, { treatments: [], drugs: [] }));

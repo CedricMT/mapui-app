@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DbDataSource } from 'src/app/common/datasources/db.datasource';
 import { DataService } from '../services/data.service';
-import { PatientFormComponent } from 'src/app/forms/patient-form/patient-form.component';
+import { DbFormComponent } from 'src/app/forms/db-form/db-form.component';
 
 @Component({
   selector: 'app-listing-table',
@@ -39,7 +39,7 @@ export class ListingTableComponent implements OnInit {
       mode: 'edit'
     });
 
-    const dialogRef = this.dialog.open(PatientFormComponent, dialogConfig);
+    const dialogRef = this.dialog.open(DbFormComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       this.dataService.update(this.collectionName, row.id, result)

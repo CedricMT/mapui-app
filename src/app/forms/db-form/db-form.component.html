@@ -1,7 +1,7 @@
 <h2>Create new Patient</h2>
 
 <div class="form-container">
-    <form [formGroup]="patientForm" [ngSwitch]="data.collectionName" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" [ngSwitch]="data.collectionName" (ngSubmit)="onSubmit()">
         <div *ngSwitchCase="'patient'" class="form-field-container">
             <mat-form-field class="form-field" appearance="fill">
                 <mat-label>First name</mat-label>
@@ -31,7 +31,7 @@
         <div class="btn-container">
             <button class="form-btn" mat-stroked-button color="primary">CANCEL</button>
             <button type="submit" class="form-btn" mat-flat-button color="primary"
-                [disabled]="!patientForm.valid">CREATE</button>
+                [disabled]="!form.valid">CREATE</button>
         </div>
     </form>
 </div>

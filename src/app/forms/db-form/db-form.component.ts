@@ -3,16 +3,16 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
-  selector: 'app-patient-form',
-  templateUrl: './patient-form.component.html',
-  styleUrls: ['./patient-form.component.scss']
+  selector: 'app-db-form',
+  templateUrl: './db-form.component.html',
+  styleUrls: ['./db-form.component.scss']
 })
-export class PatientFormComponent {
-  public patientForm: FormGroup;
+export class DbFormComponent {
+  public form: FormGroup;
   public sexes = ['Male', 'Female'];
 
   constructor(
-    private dialogRef: MatDialogRef<PatientFormComponent>,
+    private dialogRef: MatDialogRef<DbFormComponent>,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data) {
 
@@ -22,17 +22,17 @@ export class PatientFormComponent {
 
     switch (this.data.collectionName) {
       case 'patient':
-        this.patientForm = fb.group({
+        this.form = fb.group({
           firstName: ['', [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
           lastName: ['', [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
           age: ['', [Validators.required, Validators.min(0), Validators.max(150)]],
           sex: ['', [Validators.required]],
         });
 
-        this.patientForm.get('firstName').setValue(data.firstName);
-        this.patientForm.get('lastName').setValue(data.lastName);
-        this.patientForm.get('age').setValue(data.age);
-        this.patientForm.get('sex').setValue(data.sex);
+        this.form.get('firstName').setValue(data.firstName);
+        this.form.get('lastName').setValue(data.lastName);
+        this.form.get('age').setValue(data.age);
+        this.form.get('sex').setValue(data.sex);
         break;
 
       default:
@@ -44,6 +44,6 @@ export class PatientFormComponent {
   }
 
   public onSubmit() {
-    this.dialogRef.close(this.patientForm.value);
+    this.dialogRef.close(this.form.value);
   }
 }
